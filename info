@@ -1,0 +1,61 @@
+2880
+withouth dropout
+Epoch 21 --- Training Accuracy:  93.0%, Validation Accuracy:  78.0%, Validation Loss: 0.674
+
+
+Epoch 21 --- Training Accuracy:  93.0%, Validation Accuracy:  70.0%, Validation Loss: 0.613
+
+
+total iterations:
+900
+Epoch 101 --- Training Accuracy: 100.0%, Validation Accuracy: 100.0%, Validation Loss: 0.005, Test Acc:  35.5%
+
+
+total iterations:
+600
+Epoch 31 --- Training Accuracy:  97.0%, Validation Accuracy:  96.0%, Validation Loss: 0.164, Test Acc:  57.1%
+Epoch 31 --- Training Accuracy:  98.0%, Validation Accuracy:  96.0%, Validation Loss: 0.156, Test Acc:  64.3%
+
+Epoch 32 --- Training Accuracy: 100.0%, Validation Accuracy:  96.0%, Validation Loss: 0.163, Test Acc:  64.3%
+Epoch 32 --- Training Accuracy:  99.0%, Validation Accuracy:  96.0%, Validation Loss: 0.172, Test Acc:  64.3%
+Epoch 33 --- Training Accuracy:  98.0%, Validation Accuracy:  96.0%, Validation Loss: 0.169, Test Acc:  64.3%
+Epoch 33 --- Training Accuracy:  99.0%, Validation Accuracy:  96.0%, Validation Loss: 0.163, Test Acc:  78.6%
+
+
+
+my_test_model_iteration_2930.data-00000-of-00001
+Epoch 147 --- Training Accuracy: 100.0%, Validation Accuracy:  98.0%, Validation Loss: 0.096, Test Acc:  85.7%
+saving snapshot...
+
+
+
+
+
+
+-----
+iteration 310 data
+Epoch 16 --- Training Accuracy:  97.0%, Validation Accuracy:  96.0%, Validation Loss: 0.137, Test Acc:  85.7%
+saving snapshot...
+7/14..... 85.7%??
+testing_data/A/*g
+[[ -17.75943184  -72.64676666  -69.39638519]
+ [  62.97402573  147.04919434    8.36233902]
+ [ -15.24559021  153.73008728   46.0830307 ]
+ [  18.83016396  109.4101944    50.7734375 ]]
+[0 1 1 1]
+
+testing_data/B/*g
+[[ -82.05284119  -55.74012756  -47.64968872]
+ [  67.42707062   85.50382233  105.40463257]
+ [ -48.08980942  166.47108459   53.59201813]
+ [ -49.30023193  233.29901123  235.91114807]
+ [ -51.61003494  230.63424683  -34.93371582]]
+[2 2 1 2 1]
+
+testing_data/C/*g
+[[ -87.56372833   68.08934784   48.22904587]
+ [  -4.74616194   89.71450806  249.30723572]
+ [ -50.83279037   35.46843719  139.12213135]
+ [ -39.41314697  -45.21056366  149.63275146]
+ [-152.43495178 -145.8802948    -1.75206423]]
+[1 2 2 2 2]
