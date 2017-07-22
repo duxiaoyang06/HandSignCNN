@@ -18,15 +18,16 @@ def load_train(train_path, image_size, classes):
         path = os.path.join(train_path, fld, '*g')
         files = glob.glob(path)
         for fl in files:
-            image = cv2.imread(fl)
-            image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
-            images.append(image)
-            label = np.zeros(len(classes))
-            label[index] = 1.0
-            labels.append(label)
-            flbase = os.path.basename(fl)
-            ids.append(flbase)
-            cls.append(fld)
+          image = cv2.imread(fl,cv2.IMREAD_GRAYSCALE)
+          print(image.shape)
+          #image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
+          images.append(image)
+          label = np.zeros(len(classes))
+          label[index] = 1.0
+          labels.append(label)
+          flbase = os.path.basename(fl)
+          ids.append(flbase)
+          cls.append(fld)
     images = np.array(images)
     labels = np.array(labels)
     ids = np.array(ids)
@@ -48,8 +49,8 @@ def load_test(test_path, image_size, classes):
         path = os.path.join(test_path, fld, '*g')
         files = glob.glob(path)
         for fl in files:
-            image = cv2.imread(fl)
-            image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
+            image = cv2.imread(fl,cv2.IMREAD_GRAYSCALE)
+            #image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
             images.append(image)
             label = np.zeros(len(classes))
             label[index] = 1.0

@@ -28,7 +28,7 @@ IMAGE_WIDTH   = 52
 IMAGE_HEIGHT  = 52
 
 # Number of color channels for the images: 1 channel for gray-scale.
-num_channels = 3
+num_channels = 1
 
 # image dimensions (only squares for now)
 img_size = 52
@@ -62,8 +62,8 @@ data = dataset.read_train_sets(train_path, img_size, classes, validation_size=va
 test_images = dataset.read_test_set(test_path, img_size,classes)
 #print("ASdr")
 #print(test_images.test._images.shape)
-xbatch_test = test_images.test._images
-xbatch_test = xbatch_test.reshape(14, img_size_flat) #here
+#xbatch_test = test_images.test._images
+#xbatch_test = xbatch_test.reshape(41, img_size_flat) #here
 
 
 print("Size of:")
@@ -99,7 +99,7 @@ y_true_cls = tf.argmax(y_true, dimension=1)
 x = tf.placeholder(tf.float32, shape=[None, img_size_flat], name='x')
 x_image = tf.reshape(x, [-1, img_size, img_size, num_channels])
 
-W_conv1 = weight_variable([5,5,3,32])
+W_conv1 = weight_variable([5,5,num_channels,32])
 b_conv1 = bias_variable([32])
 h_conv1 = tf.nn.relu(conv2d(x_image,W_conv1)+b_conv1)
 h_pool1 = max_pool_2x2(h_conv1)
@@ -155,19 +155,19 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
 session.run(tf.initialize_all_variables()) # for older versions
 train_batch_size = batch_size
 
-def print_progress(epoch, feed_dict_train, feed_dict_validate,feed_dict_test, val_loss):
+def print_progress(epoch, feed_dict_train, feed_dict_validate, val_loss):
     # Calculate the accuracy on the training-set.
     acc = session.run(accuracy, feed_dict=feed_dict_train)
     val_acc = session.run(accuracy, feed_dict=feed_dict_validate)
     #mine
-    test_acc = session.run(accuracy, feed_dict=feed_dict_test)
-    msg = "Epoch {0} --- Training Accuracy: {1:>6.1%}, Validation Accuracy: {2:>6.1%}, Validation Loss: {3:.3f}, Test Acc: {4:>6.1%}"
-    print(msg.format(epoch + 1, acc, val_acc, val_loss,test_acc))
+    #test_acc = session.run(accuracy, feed_dict=feed_dict_test)
+    msg = "Epoch {0} --- Training Accuracy: {1:>6.1%}, Validation Accuracy: {2:>6.1%}, Validation Loss: {3:.3f}"
+    print(msg.format(epoch + 1, acc, val_acc, val_loss))
     #print("y true")
     #print(session.run(y_true,feed_dict=feed_dict_test))
     #print("y predict")
     #print(session.run(y_conv,feed_dict=feed_dict_test))
-    return acc,val_acc,test_acc
+    return acc,val_acc
 
 
 total_iterations = 0
@@ -204,9 +204,9 @@ def optimize(num_iterations):
                               y_true: y_valid_batch,
                               keep_prob:1}
                               
-        feed_dict_test = {x: xbatch_test,
-                              y_true: test_images.test._labels,
-                              keep_prob:1}
+        #feed_dict_test = {x: xbatch_test,
+        #                      y_true: test_images.test._labels,
+        #                      keep_prob:1}
 
         # Run the optimizer using this batch of training data.
         # TensorFlow assigns the variables in feed_dict_train
@@ -220,8 +220,8 @@ def optimize(num_iterations):
         if i % 10 == 0:
             val_loss = session.run(cross_entropy, feed_dict=feed_dict_validate)
             epoch = int(i / int(data.train.num_examples/batch_size))
-            train_acc,val_acc,test_acc = print_progress(epoch, feed_dict_train, feed_dict_validate, feed_dict_test,val_loss)
-            if(val_acc > 0.95 and test_acc>0.85):
+            train_acc,val_acc = print_progress(epoch, feed_dict_train, feed_dict_validate,val_loss)
+            if(val_acc > 0.96 and val_acc>0.98 and val_loss<0.1):
                 print("saving snapshot...")
                 saver = tf.train.Saver()
                 saver.save(session, 'my_test_model_iteration_'+str(i)) 
@@ -231,8 +231,8 @@ def optimize(num_iterations):
             print(i)
             val_loss = session.run(cross_entropy, feed_dict=feed_dict_validate)
             epoch = int(i / int(data.train.num_examples/batch_size))
-            train_acc,val_acc,test_acc = print_progress(epoch, feed_dict_train, feed_dict_validate, feed_dict_test,val_loss)
-            if(val_acc > 0.95 and test_acc>0.85):
+            train_acc,val_acc = print_progress(epoch, feed_dict_train, feed_dict_validate,val_loss)
+            if(val_acc > 0.96 and val_acc>0.98 and val_loss<0.1):
                 print("saving snapshot...")
                 saver = tf.train.Saver()
                 saver.save(session, 'my_test_model_iteration_'+str(i)) 

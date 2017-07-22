@@ -1,3 +1,12 @@
+hand detection, on closer hand image
+negative countour black and white hand
+train network with 1 channel
+
+
+
+
+
+
 2880
 withouth dropout
 Epoch 21 --- Training Accuracy:  93.0%, Validation Accuracy:  78.0%, Validation Loss: 0.674
@@ -59,3 +68,11 @@ testing_data/C/*g
  [ -39.41314697  -45.21056366  149.63275146]
  [-152.43495178 -145.8802948    -1.75206423]]
 [1 2 2 2 2]
+
+
+
+
+
+original_data
+original_data_augmented
+training_data
